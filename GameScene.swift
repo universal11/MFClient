@@ -9,21 +9,34 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    let zone_background : SKSpriteNode = SKSpriteNode(imageNamed:"assets/background.png");
+    var in_progress = false;
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         
-        self.addChild(myLabel)
+        let intro_title : SKLabelNode = SKLabelNode(fontNamed:"Chalkduster")
+        intro_title.text = "Mighty Frighties!";
+        intro_title.fontSize = 50;
+        intro_title.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        
+        self.addChild(intro_title);
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
         
+        if !self.in_progress{
+            self.doTest();
+            zone_background.size = self.size;
+            zone_background.anchorPoint = CGPoint(x:0, y:0);
+            self.addChild(self.zone_background);
+            self.in_progress = true;
+        }
+        
+        /*
         for touch: AnyObject in touches {
-            let location = touch.locationInNode(self)
+            let location = touch.locationInNode(self);
             
             let sprite = SKSpriteNode(imageNamed:"Spaceship")
             
@@ -37,9 +50,14 @@ class GameScene: SKScene {
             
             self.addChild(sprite)
         }
+        */
     }
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    }
+    
+    func doTest(){
+        println("Test Performed!");
     }
 }

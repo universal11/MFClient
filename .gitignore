@@ -6,3 +6,6 @@
 #
 # Pods/
 
+Base.lproj/
+Images.xcassets/
+Info.plist/
